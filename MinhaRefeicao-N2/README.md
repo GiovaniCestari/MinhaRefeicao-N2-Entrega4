@@ -21,7 +21,7 @@ Basta dar dois cliques no arquivo **`executar_windows.bat`** na raiz do projeto.
 ```bash
 bash executar_gitbash.sh
 ```
-Ou para rodar toda a bateria de testes (Fluxo Principal + Fluxos Alternativos A1 e A2 + Leitura do CSV) de uma só vez sem precisar digitar nada:
+Ou para rodar toda a bateria de testes (Fluxo Principal + Fluxos Alternativos FA1, FA2 e FA3 + Leitura do CSV) de uma só vez sem precisar digitar nada:
 ```bash
 mkdir -p bin && javac -encoding UTF-8 -d bin $(find src -name "*.java") && java -cp bin minharefeicao.Main --auto-test
 ```

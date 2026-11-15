@@ -22,7 +22,7 @@ public class Endereco {
     }
 
     public static Endereco criar(Map<String, String> dadosEndereco) {
-        System.out.println("  [Seq 37: <<create>> en:Endereco.criar] Instanciando endereco de entrega...");
+        System.out.println("  [Seq 41: <<create>> en:Endereco.criar] Instanciando endereco de entrega...");
         Endereco en = new Endereco(dadosEndereco);
         en.validarCEP();
         return en;
@@ -30,7 +30,7 @@ public class Endereco {
 
     public boolean validarCEP() {
         boolean valido = this.cep != null && this.cep.replaceAll("\\D", "").length() == 8;
-        System.out.println("  [Seq 38: en:Endereco.validarCEP] CEP " + this.cep + " validado = " + valido);
+        System.out.println("  [Seq 42: en:Endereco.validarCEP] CEP " + this.cep + " validado = " + valido);
         return valido;
     }
 

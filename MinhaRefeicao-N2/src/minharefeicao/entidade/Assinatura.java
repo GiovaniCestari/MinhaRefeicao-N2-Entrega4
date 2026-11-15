@@ -25,39 +25,39 @@ public class Assinatura {
     }
 
     public static Assinatura criar(Assinante a, Plano pl) {
-        System.out.println("  [Seq 17: <<create>> as:Assinatura.criar] Criando Assinatura para o celular " + a.getCelular());
+        System.out.println("  [Seq 18: <<create>> as:Assinatura.criar] Criando Assinatura para o celular " + a.getCelular());
         return new Assinatura(a, pl);
     }
 
     public void vincularEndereco(Endereco en) {
         this.endereco = en;
-        System.out.println("  [Seq 39: as:Assinatura.vincularEndereco] Endereco vinculado: " + en.getResumoFormatado());
+        System.out.println("  [Seq 44: as:Assinatura.vincularEndereco] Endereco vinculado: " + en.getResumoFormatado());
         calcularValorTotal();
         atualizarStatus(StatusAssinatura.AGUARDANDO_PAGAMENTO);
     }
 
     public double calcularValorTotal() {
         this.valorTotal = this.plano.getValor();
-        System.out.println("  [Seq 40: as:Assinatura.calcularValorTotal] Valor total apurado: R$ " + String.format("%.2f", this.valorTotal));
+        System.out.println("  [Seq 45: as:Assinatura.calcularValorTotal] Valor total apurado: R$ " + String.format("%.2f", this.valorTotal));
         return this.valorTotal;
     }
 
     public void atualizarStatus(StatusAssinatura novoStatus) {
         this.status = novoStatus;
-        System.out.println("  [Seq 41: as:Assinatura.atualizarStatus] Status da Assinatura: " + this.status);
+        System.out.println("  [Seq 46: as:Assinatura.atualizarStatus] Status da Assinatura: " + this.status);
     }
 
     public String ativarAssinatura() {
         this.status = StatusAssinatura.ATIVA;
+        System.out.println("  [Seq 59: as:Assinatura.ativarAssinatura] Status da Assinatura atualizado para: " + this.status);
         gerarProtocoloEPrevisaoEntrega();
-        System.out.println("  [Seq 52: as:Assinatura.ativarAssinatura] Assinatura ATIVA! Protocolo: " + this.protocolo);
         return this.protocolo;
     }
 
     public void gerarProtocoloEPrevisaoEntrega() {
         this.protocolo = "MR-2026-" + (1000 + (int)(Math.random() * 8999));
         this.previsaoPrimeiraEntrega = LocalDate.now().plusDays(2);
-        System.out.println("  [Seq 53: as:Assinatura.gerarProtocoloEPrevisaoEntrega] Protocolo " + this.protocolo
+        System.out.println("  [Seq 60: as:Assinatura.gerarProtocoloEPrevisaoEntrega] Protocolo " + this.protocolo
                 + " | Previsao 1a Entrega: " + getPrevisaoFormatada());
     }
 

@@ -54,7 +54,7 @@ public class PersistenciaCSV {
                 }
             }
 
-            System.out.println("  [Seq 54: PersistenciaCSV.salvarAssinatura] Dados persistidos com sucesso em '" + ARQUIVO_ASSINATURAS + "' e '" + ARQUIVO_ITENS + "'!");
+            System.out.println("  [Seq 61: PersistenciaCSV.salvarAssinatura] Dados persistidos com sucesso em '" + ARQUIVO_ASSINATURAS + "' e '" + ARQUIVO_ITENS + "'!");
         } catch (IOException e) {
             System.err.println("  [Erro de Persistencia CSV]: " + e.getMessage());
         }

@@ -17,7 +17,7 @@ public class Cardapio {
     }
 
     public List<Refeicao> buscarCompativeis(List<PreferenciaAlimentar> listaPref) {
-        System.out.println("  [Seq 20: ca:Cardapio.buscarCompativeis] Consultando colecao de refeicoes do cardapio (" + periodoSemana + ")...");
+        System.out.println("  [Seq 21: ca:Cardapio.buscarCompativeis] Consultando colecao de refeicoes do cardapio (" + periodoSemana + ")...");
         return catalogoRefeicoes.filtrarPorPreferencias(listaPref);
     }
 

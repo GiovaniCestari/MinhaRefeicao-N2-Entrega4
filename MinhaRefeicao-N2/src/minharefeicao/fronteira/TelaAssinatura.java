@@ -28,22 +28,22 @@ public class TelaAssinatura {
     }
 
     public void selecionarPlanoEPreferencias(String idPlano, List<PreferenciaAlimentar> listaPref) {
-        System.out.println("\n[Seq 13: Ator -> viewAssinatura.selecionarPlanoEPreferencias] Plano: " + idPlano + " | Preferencias: " + listaPref);
+        System.out.println("\n[Seq 14: Ator -> viewAssinatura.selecionarPlanoEPreferencias] Plano: " + idPlano + " | Preferencias: " + listaPref);
         ctrlAssinatura.iniciarAssinatura(idPlano, listaPref);
     }
 
     public void incluirRefeicaoNoPedido(String idRefeicao, int qtde) {
-        System.out.println("\n[Seq 24: Ator -> viewAssinatura.incluirRefeicaoNoPedido] Refeicao: " + idRefeicao + " | Quantidade: " + qtde);
+        System.out.println("\n[Seq 27: Ator -> viewAssinatura.incluirRefeicaoNoPedido] Refeicao: " + idRefeicao + " | Quantidade: " + qtde);
         ctrlAssinatura.addRefeicao(idRefeicao, qtde);
     }
 
     public void registrarLocalEntrega(Map<String, String> dadosEndereco) {
-        System.out.println("\n[Seq 35: Ator -> viewAssinatura.registrarLocalEntrega] CEP: " + dadosEndereco.get("cep"));
+        System.out.println("\n[Seq 39: Ator -> viewAssinatura.registrarLocalEntrega] CEP: " + dadosEndereco.get("cep"));
         ctrlAssinatura.definirEnderecoEntrega(dadosEndereco);
     }
 
     public void efetuarPagamentoAssinatura(String numero, String titular, String validade) {
-        System.out.println("\n[Seq 42: Ator -> viewAssinatura.efetuarPagamentoAssinatura] Titular: " + titular + " | Final Cartao: " + numero.substring(Math.max(0, numero.length() - 4)));
+        System.out.println("\n[Seq 48: Ator -> viewAssinatura.efetuarPagamentoAssinatura] Titular: " + titular + " | Final Cartao: " + numero.substring(Math.max(0, numero.length() - 4)));
         ctrlAssinatura.processarPagamento(numero, titular, validade);
     }
 
@@ -52,29 +52,29 @@ public class TelaAssinatura {
     }
 
     public void exibirErroSMS(String mensagem) {
-        System.out.println("  [Seq A1: viewAssinatura.exibirErroSMS] TELA (ALERTA SMS): " + mensagem);
+        System.out.println("  [Seq FA1: viewAssinatura.exibirErroSMS] TELA (ALERTA SMS): " + mensagem);
     }
 
     public void exibirPlanosDisponiveis() {
-        System.out.println("  [Seq 12: viewAssinatura.exibirPlanosDisponiveis] TELA: Autenticacao concluida! Planos disponiveis:");
+        System.out.println("  [Seq 13: viewAssinatura.exibirPlanosDisponiveis] TELA: Autenticacao concluida! Planos disponiveis:");
         for (Plano p : Plano.listarTodos().values()) {
             System.out.println("     -> [" + p.getId() + "] " + p.getNome() + " - R$ " + String.format("%.2f", p.getValor()));
         }
     }
 
     public void exibirCardapio(List<Refeicao> catalogo, int limitePlano) {
-        System.out.println("  [Seq 23: viewAssinatura.exibirCardapio] TELA: Cardapio personalizado carregado (Selecione ate " + limitePlano + " refeicoes):");
+        System.out.println("  [Seq 26: viewAssinatura.exibirCardapio] TELA: Cardapio personalizado carregado (Selecione ate " + limitePlano + " refeicoes):");
         for (Refeicao r : catalogo) {
             System.out.println("     -> [" + r.getId() + "] " + r.getNome() + " | " + r.obterDescricaoCategoria());
         }
     }
 
     public void atualizarBarraProgresso(int saldoRestante) {
-        System.out.println("  [Seq 34: viewAssinatura.atualizarBarraProgresso] TELA: Barra de progresso atualizada! Refeicoes restantes para fechar o plano: " + saldoRestante);
+        System.out.println("  [Seq 38: viewAssinatura.atualizarBarraProgresso] TELA: Barra de progresso atualizada! Refeicoes restantes para fechar o plano: " + saldoRestante);
     }
 
     public void exibirResumoParaPagamento(Assinatura resumo) {
-        System.out.println("  [Seq 41: viewAssinatura.exibirResumoParaPagamento] TELA DE RESUMO:");
+        System.out.println("  [Seq 47: viewAssinatura.exibirResumoParaPagamento] TELA DE RESUMO:");
         System.out.println("     Plano: " + resumo.getPlano().getNome());
         System.out.println("     Total de Porcoes no Pedido: " + resumo.getPedidoInicial().getColecaoItens().calcularTotalPorcoes());
         System.out.println("     Endereco: " + resumo.getEndereco().getResumoFormatado());
@@ -83,7 +83,7 @@ public class TelaAssinatura {
     }
 
     public void exibirConfirmacaoSucesso(String protocolo, String previsaoEntrega) {
-        System.out.println("  [Seq 55: viewAssinatura.exibirConfirmacaoSucesso] TELA DE SUCESSO:");
+        System.out.println("  [Seq 62: viewAssinatura.exibirConfirmacaoSucesso] TELA DE SUCESSO:");
         System.out.println("     ================================================================");
         System.out.println("     ASSINATURA CONFIRMADA E ATIVA!");
         System.out.println("     Protocolo Gerado: " + protocolo);
@@ -91,7 +91,12 @@ public class TelaAssinatura {
         System.out.println("     ================================================================");
     }
 
+    public void exibirErroLimitePlano(int limitePlano, int disponiveis) {
+        System.out.println("  [Seq FA2: viewAssinatura.exibirErroLimitePlano] TELA (ALERTA LIMITE): Quantidade acima do limite do plano (limite: "
+                + limitePlano + " refeicoes; ainda disponiveis: " + disponiveis + "). Ajuste sua selecao.");
+    }
+
     public void exibirErroPagamento(String mensagem) {
-        System.out.println("  [Seq A2: viewAssinatura.exibirErroPagamento] TELA (ERRO DE PAGAMENTO): " + mensagem);
+        System.out.println("  [Seq FA3: viewAssinatura.exibirErroPagamento] TELA (ERRO DE PAGAMENTO): " + mensagem);
     }
 }

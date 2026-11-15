@@ -31,7 +31,7 @@ public class Plano {
 
     public static Plano buscarPlano(String idPlano) {
         Plano pl = PLANOS_DISPONIVEIS.getOrDefault(idPlano, PLANOS_DISPONIVEIS.get("PLANO_SEM_5"));
-        System.out.println("  [Seq 16: pl:Plano.buscarPlano] Plano selecionado: " + pl.getNome() + " | Limite: " + pl.getQuantidadeRefeicoes() + " refeicoes | R$ " + String.format("%.2f", pl.getValor()));
+        System.out.println("  [Seq 17: pl:Plano.buscarPlano] Plano selecionado: " + pl.getNome() + " | Limite: " + pl.getQuantidadeRefeicoes() + " refeicoes | R$ " + String.format("%.2f", pl.getValor()));
         return pl;
     }
 

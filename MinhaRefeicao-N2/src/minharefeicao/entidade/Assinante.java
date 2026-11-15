@@ -36,7 +36,7 @@ public class Assinante {
     public void vincularPreferencias(List<PreferenciaAlimentar> listaPref) {
         this.preferencias.clear();
         this.preferencias.addAll(listaPref);
-        System.out.println("  [Seq 15: a:Assinante.vincularPreferencias] Preferencias vinculadas: " + listaPref);
+        System.out.println("  [Seq 16: a:Assinante.vincularPreferencias] Preferencias vinculadas: " + listaPref);
     }
 
     public Long getId() { return id; }

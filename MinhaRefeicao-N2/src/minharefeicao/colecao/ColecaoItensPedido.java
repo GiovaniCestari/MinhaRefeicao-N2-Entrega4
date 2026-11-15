@@ -12,8 +12,13 @@ public class ColecaoItensPedido {
     }
 
     public boolean add(ItemPedido ip) {
-        System.out.println("  [Seq 32: :ItemPedido(ColecaoItensPedido).add] Item adicionado a colecao de itens do pedido.");
+        System.out.println("  [Seq 35: :ItemPedido(ColecaoItensPedido).add] Item adicionado a colecao de itens do pedido.");
         return this.itens.add(ip);
+    }
+
+    public boolean remover(ItemPedido ip) {
+        System.out.println("  [Seq FA2: :ItemPedido(ColecaoItensPedido).remover] Item removido: a selecao ultrapassava o limite do plano.");
+        return this.itens.remove(ip);
     }
 
     public int calcularTotalPorcoes() {

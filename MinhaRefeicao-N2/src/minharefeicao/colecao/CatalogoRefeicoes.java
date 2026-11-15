@@ -28,7 +28,7 @@ public class CatalogoRefeicoes {
     }
 
     public List<Refeicao> filtrarPorPreferencias(List<PreferenciaAlimentar> listaPref) {
-        System.out.println("  [Seq 21: :Refeicao(CatalogoRefeicoes).filtrarPorPreferencias] Percorrendo colecao de refeicoes...");
+        System.out.println("  [Seq 22: :Refeicao(CatalogoRefeicoes).filtrarPorPreferencias] Percorrendo colecao de refeicoes...");
         List<Refeicao> filtradas = new ArrayList<>();
         for (Refeicao r : refeicoes) {
             boolean compativel = r.verificarCompatibilidade(listaPref);
@@ -36,14 +36,14 @@ public class CatalogoRefeicoes {
                 filtradas.add(r);
             }
         }
-        System.out.println("  [Seq 22: r:Refeicao.verificarCompatibilidade] " + filtradas.size() + " refeicoes compativeis encontradas.");
+        System.out.println("  [Seq 23: r:Refeicao.verificarCompatibilidade] " + filtradas.size() + " refeicoes compativeis encontradas.");
         return filtradas;
     }
 
     public Refeicao buscarRefeicao(String idRefeicao) {
         for (Refeicao r : refeicoes) {
             if (r.getId().equalsIgnoreCase(idRefeicao)) {
-                System.out.println("  [Seq 26: :Refeicao(CatalogoRefeicoes).buscarRefeicao] Refeicao localizada: " + r.getId() + " - " + r.getNome());
+                System.out.println("  [Seq 29: :Refeicao(CatalogoRefeicoes).buscarRefeicao] Refeicao localizada: " + r.getId() + " - " + r.getNome());
                 return r;
             }
         }

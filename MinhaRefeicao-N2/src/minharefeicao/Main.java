@@ -24,7 +24,7 @@ public class Main {
             System.out.println("   PLATAFORMA MINHA REFEICAO - ENTREGA 4 (IMPLEMENTACAO DO CASO DE USO EM JAVA) ");
             System.out.println("================================================================================");
             System.out.println(" [1] Executar Demonstracao Automatica: FLUXO PRINCIPAL COMPLETO (Passos 1 a 55 + CSV)");
-            System.out.println(" [2] Executar Demonstracao Automatica: FLUXOS ALTERNATIVOS (A1: SMS Invalido/Limite | A2: Cartao Recusado)");
+            System.out.println(" [2] Executar Demonstracao Automatica: FLUXOS ALTERNATIVOS (FA1: SMS Invalido/Limite | FA2: Limite do Plano | FA3: Cartao Recusado)");
             System.out.println(" [3] Executar Simulacao Interativa (Digitar dados passo a passo no console)");
             System.out.println(" [4] Exibir Dados Persistidos nos Arquivos CSV (dados/assinaturas.csv e itens_pedido.csv)");
             System.out.println(" [0] Sair");
@@ -87,21 +87,29 @@ public class Main {
     }
 
     public static void executarFluxosAlternativosAutomatico() {
-        System.out.println("\n>>> INICIANDO SIMULACAO DOS FLUXOS ALTERNATIVOS E DE EXCECAO (A1 e A2) <<<");
+        System.out.println("\n>>> INICIANDO SIMULACAO DOS FLUXOS ALTERNATIVOS E DE EXCECAO (FA1, FA2 e FA3) <<<");
         CtrlAssinatura ctrl = new CtrlAssinatura();
         TelaAssinatura view = new TelaAssinatura(ctrl);
+        List<PreferenciaAlimentar> prefs = Collections.singletonList(new PreferenciaAlimentar(1L, "Low Carb", "Baixo carboidrato"));
 
-        System.out.println("\n--- [FLUXO ALTERNATIVO A1: Codigo SMS Invalido e Bloqueio por Limite de Tentativas] ---");
+        System.out.println("\n--- [FLUXO ALTERNATIVO FA1: Codigo SMS Invalido e Bloqueio por Limite de Tentativas] ---");
         view.solicitarAutenticacaoSMS("(11) 91234-5678");
         view.confirmarAutenticacaoSMS("(11) 91234-5678", "000000");
         view.confirmarAutenticacaoSMS("(11) 91234-5678", "999999");
         view.confirmarAutenticacaoSMS("(11) 91234-5678", "111111");
 
-        System.out.println("\n--- [FLUXO ALTERNATIVO A2: Pagamento Nao Autorizado pela Operadora de Cartao] ---");
+        System.out.println("\n--- [FLUXO ALTERNATIVO FA2: Quantidade de Refeicoes Incompativel com o Plano] ---");
+        view.solicitarAutenticacaoSMS("(11) 95555-1234");
+        view.confirmarAutenticacaoSMS("(11) 95555-1234", "123456");
+        view.selecionarPlanoEPreferencias("PLANO_SEM_5", prefs);
+        view.incluirRefeicaoNoPedido("REF01", 3);
+        view.incluirRefeicaoNoPedido("REF02", 4);   // 3 + 4 = 7 > 5: rejeitado (FA2)
+        view.incluirRefeicaoNoPedido("REF02", 2);   // ajuste do Assinante: 3 + 2 = 5, fluxo retorna ao normal
+
+        System.out.println("\n--- [FLUXO ALTERNATIVO FA3: Pagamento Nao Autorizado pela Operadora de Cartao] ---");
         view.solicitarAutenticacaoSMS("(11) 91234-5678");
         view.confirmarAutenticacaoSMS("(11) 91234-5678", "123456");
 
-        List<PreferenciaAlimentar> prefs = Collections.singletonList(new PreferenciaAlimentar(1L, "Low Carb", "Baixo carboidrato"));
         view.selecionarPlanoEPreferencias("PLANO_SEM_5", prefs);
         view.incluirRefeicaoNoPedido("REF01", 3);
         view.incluirRefeicaoNoPedido("REF04", 2);

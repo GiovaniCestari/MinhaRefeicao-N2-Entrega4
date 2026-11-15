@@ -2,6 +2,7 @@ package minharefeicao.controller;
 
 import minharefeicao.colecao.CatalogoRefeicoes;
 import minharefeicao.entidade.*;
+import minharefeicao.excecao.LimiteRefeicoesExcedidoException;
 import minharefeicao.fronteira.OperadoraCartao;
 import minharefeicao.fronteira.TelaAssinatura;
 import minharefeicao.persistencia.PersistenciaCSV;
@@ -57,7 +58,7 @@ public class CtrlAssinatura {
     }
 
     public void iniciarAssinatura(String idPlano, List<PreferenciaAlimentar> listaPref) {
-        System.out.println("  [Seq 14: ctrlAssinatura.iniciarAssinatura] Coordenando criacao da assinatura e filtro de cardapio...");
+        System.out.println("  [Seq 15: ctrlAssinatura.iniciarAssinatura] Coordenando criacao da assinatura e filtro de cardapio...");
         this.assinanteAtual.vincularPreferencias(listaPref);
         Plano pl = Plano.buscarPlano(idPlano);
         this.assinaturaAtual = Assinatura.criar(this.assinanteAtual, pl);
@@ -67,23 +68,30 @@ public class CtrlAssinatura {
     }
 
     public int addRefeicao(String idRefeicao, int qtde) {
-        System.out.println("  [Seq 25: ctrlAssinatura.addRefeicao] Buscando refeicao na colecao e adicionando ao pedido...");
+        System.out.println("  [Seq 28: ctrlAssinatura.addRefeicao] Buscando refeicao na colecao e adicionando ao pedido...");
         Refeicao r = this.catalogoRefeicoes.buscarRefeicao(idRefeicao);
         int limitePlano = this.assinaturaAtual.getPlano().getQuantidadeRefeicoes();
-        int saldoRestante = this.assinaturaAtual.getPedidoInicial().adicionarItem(r, qtde, limitePlano);
-        this.viewAssinatura.atualizarBarraProgresso(saldoRestante);
-        return saldoRestante;
+        try {
+            int saldoRestante = this.assinaturaAtual.getPedidoInicial().adicionarItem(r, qtde, limitePlano);
+            this.viewAssinatura.atualizarBarraProgresso(saldoRestante);
+            return saldoRestante;
+        } catch (LimiteRefeicoesExcedidoException e) {
+            // FA2: informa o limite do plano e pede que o Assinante ajuste a selecao
+            int disponiveis = getSaldoRestanteAtual();
+            this.viewAssinatura.exibirErroLimitePlano(e.getLimitePlano(), disponiveis);
+            return disponiveis;
+        }
     }
 
     public void definirEnderecoEntrega(Map<String, String> dadosEndereco) {
-        System.out.println("  [Seq 36: ctrlAssinatura.definirEnderecoEntrega] Instanciando e vinculando endereco...");
+        System.out.println("  [Seq 40: ctrlAssinatura.definirEnderecoEntrega] Instanciando e vinculando endereco...");
         Endereco en = Endereco.criar(dadosEndereco);
         this.assinaturaAtual.vincularEndereco(en);
         this.viewAssinatura.exibirResumoParaPagamento(this.assinaturaAtual);
     }
 
     public boolean processarPagamento(String numero, String titular, String validade) {
-        System.out.println("  [Seq 43: ctrlAssinatura.processarPagamento] Processando pagamento da assinatura...");
+        System.out.println("  [Seq 49: ctrlAssinatura.processarPagamento] Processando pagamento da assinatura...");
         CartaoCredito cc = CartaoCredito.criar(numero, titular, validade);
         Pagamento pg = Pagamento.criar(this.assinaturaAtual.getValorTotal(), cc);
         this.assinaturaAtual.setPagamento(pg);

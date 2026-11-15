@@ -1,3 +1,4 @@
+
 >>> INICIANDO SIMULACAO DO FLUXO PRINCIPAL (CENARIO: ASSINAR PLANO DE REFEICOES) <<<
 
 [Seq 1: Ator -> viewAssinatura.solicitarAutenticacaoSMS] Celular: (11) 99876-5432
@@ -10,21 +11,21 @@
   [Seq 8: ctrlAssinatura.validarCodigoSMS] Validando codigo informado...
   [Seq 9: c:CodigoConfirmacao.validar] Tentativa 1/3 -> validado = true
   [Seq 11: a:Assinante.autenticar] Assinante autenticado com sucesso (ativo = true)
-  [Seq 12: viewAssinatura.exibirPlanosDisponiveis] TELA: Autenticacao concluida! Planos disponiveis:
+  [Seq 13: viewAssinatura.exibirPlanosDisponiveis] TELA: Autenticacao concluida! Planos disponiveis:
      -> [PLANO_SEM_5] Plano Semanal Compacto (5 refeicoes) - R$ 149.90
      -> [PLANO_SEM_10] Plano Semanal Completo (10 refeicoes) - R$ 279.90
      -> [PLANO_MEN_20] Plano Mensal Fit (20 refeicoes) - R$ 499.90
 
-[Seq 13: Ator -> viewAssinatura.selecionarPlanoEPreferencias] Plano: PLANO_SEM_5 | Preferencias: [Low Carb, Proteico]
-  [Seq 14: ctrlAssinatura.iniciarAssinatura] Coordenando criacao da assinatura e filtro de cardapio...
-  [Seq 15: a:Assinante.vincularPreferencias] Preferencias vinculadas: [Low Carb, Proteico]
-  [Seq 16: pl:Plano.buscarPlano] Plano selecionado: Plano Semanal Compacto (5 refeicoes) | Limite: 5 refeicoes | R$ 149.90
-  [Seq 17: <<create>> as:Assinatura.criar] Criando Assinatura para o celular (11) 99876-5432
-  [Seq 18: <<create>> pe:Pedido.criarPedidoInicial] Pedido inicial criado com status EM_ELABORACAO
-  [Seq 20: ca:Cardapio.buscarCompativeis] Consultando colecao de refeicoes do cardapio (Semana Atual - Nov/2026)...
-  [Seq 21: :Refeicao(CatalogoRefeicoes).filtrarPorPreferencias] Percorrendo colecao de refeicoes...
-  [Seq 22: r:Refeicao.verificarCompatibilidade] 6 refeicoes compativeis encontradas.
-  [Seq 23: viewAssinatura.exibirCardapio] TELA: Cardapio personalizado carregado (Selecione ate 5 refeicoes):
+[Seq 14: Ator -> viewAssinatura.selecionarPlanoEPreferencias] Plano: PLANO_SEM_5 | Preferencias: [Low Carb, Proteico]
+  [Seq 15: ctrlAssinatura.iniciarAssinatura] Coordenando criacao da assinatura e filtro de cardapio...
+  [Seq 16: a:Assinante.vincularPreferencias] Preferencias vinculadas: [Low Carb, Proteico]
+  [Seq 17: pl:Plano.buscarPlano] Plano selecionado: Plano Semanal Compacto (5 refeicoes) | Limite: 5 refeicoes | R$ 149.90
+  [Seq 18: <<create>> as:Assinatura.criar] Criando Assinatura para o celular (11) 99876-5432
+  [Seq 19: <<create>> pe:Pedido.criarPedidoInicial] Pedido inicial criado com status EM_ELABORACAO
+  [Seq 21: ca:Cardapio.buscarCompativeis] Consultando colecao de refeicoes do cardapio (Semana Atual - Nov/2026)...
+  [Seq 22: :Refeicao(CatalogoRefeicoes).filtrarPorPreferencias] Percorrendo colecao de refeicoes...
+  [Seq 23: r:Refeicao.verificarCompatibilidade] 6 refeicoes compativeis encontradas.
+  [Seq 26: viewAssinatura.exibirCardapio] TELA: Cardapio personalizado carregado (Selecione ate 5 refeicoes):
      -> [REF01] File Mignon Grelhado ao Molho de Ervas | Prato Principal [Proteina: Carne Bovina, 350g, 420 kcal]
      -> [REF02] Frango Grelhado com Crosta de Gergelim | Prato Principal [Proteina: Peito de Frango, 320g, 380 kcal]
      -> [REF03] Salmao Assado com Alecrim | Prato Principal [Proteina: Salmao, 300g, 460 kcal]
@@ -32,64 +33,64 @@
      -> [REF05] Pure de Mandioquinha Fit com Azeite Trufado | Acompanhamento [Porcao: 150g, 190 kcal]
      -> [REF06] Mousse de Cacau 70% com Chia | Sobremesa [Zero Acucar, 140 kcal]
 
-[Seq 24: Ator -> viewAssinatura.incluirRefeicaoNoPedido] Refeicao: REF01 | Quantidade: 2
-  [Seq 25: ctrlAssinatura.addRefeicao] Buscando refeicao na colecao e adicionando ao pedido...
-  [Seq 26: :Refeicao(CatalogoRefeicoes).buscarRefeicao] Refeicao localizada: REF01 - File Mignon Grelhado ao Molho de Ervas
-  [Seq 28: pe:Pedido.adicionarItem] Adicionando refeicao ao pedido...
-  [Seq 29: <<create>> ip:ItemPedido.criar] Instanciando ItemPedido para 'File Mignon Grelhado ao Molho de Ervas' (qtde: 2)
-  [Seq 30: ip:ItemPedido.calcularSubtotalPorcoes] Subtotal calculado: 2 porcao(oes)
-  [Seq 32: :ItemPedido(ColecaoItensPedido).add] Item adicionado a colecao de itens do pedido.
-  [Seq 33: pe:Pedido.validarLimiteRefeicoes] Total no pedido: 2/5 (Saldo restante: 3)
-  [Seq 34: viewAssinatura.atualizarBarraProgresso] TELA: Barra de progresso atualizada! Refeicoes restantes para fechar o plano: 3
+[Seq 27: Ator -> viewAssinatura.incluirRefeicaoNoPedido] Refeicao: REF01 | Quantidade: 2
+  [Seq 28: ctrlAssinatura.addRefeicao] Buscando refeicao na colecao e adicionando ao pedido...
+  [Seq 29: :Refeicao(CatalogoRefeicoes).buscarRefeicao] Refeicao localizada: REF01 - File Mignon Grelhado ao Molho de Ervas
+  [Seq 31: pe:Pedido.adicionarItem] Adicionando refeicao ao pedido...
+  [Seq 32: <<create>> ip:ItemPedido.criar] Instanciando ItemPedido para 'File Mignon Grelhado ao Molho de Ervas' (qtde: 2)
+  [Seq 33: ip:ItemPedido.calcularSubtotalPorcoes] Subtotal calculado: 2 porcao(oes)
+  [Seq 35: :ItemPedido(ColecaoItensPedido).add] Item adicionado a colecao de itens do pedido.
+  [Seq 36: pe:Pedido.validarLimiteRefeicoes] Total no pedido: 2/5 (Saldo restante: 3)
+  [Seq 38: viewAssinatura.atualizarBarraProgresso] TELA: Barra de progresso atualizada! Refeicoes restantes para fechar o plano: 3
 
-[Seq 24: Ator -> viewAssinatura.incluirRefeicaoNoPedido] Refeicao: REF02 | Quantidade: 2
-  [Seq 25: ctrlAssinatura.addRefeicao] Buscando refeicao na colecao e adicionando ao pedido...
-  [Seq 26: :Refeicao(CatalogoRefeicoes).buscarRefeicao] Refeicao localizada: REF02 - Frango Grelhado com Crosta de Gergelim
-  [Seq 28: pe:Pedido.adicionarItem] Adicionando refeicao ao pedido...
-  [Seq 29: <<create>> ip:ItemPedido.criar] Instanciando ItemPedido para 'Frango Grelhado com Crosta de Gergelim' (qtde: 2)
-  [Seq 30: ip:ItemPedido.calcularSubtotalPorcoes] Subtotal calculado: 2 porcao(oes)
-  [Seq 32: :ItemPedido(ColecaoItensPedido).add] Item adicionado a colecao de itens do pedido.
-  [Seq 33: pe:Pedido.validarLimiteRefeicoes] Total no pedido: 4/5 (Saldo restante: 1)
-  [Seq 34: viewAssinatura.atualizarBarraProgresso] TELA: Barra de progresso atualizada! Refeicoes restantes para fechar o plano: 1
+[Seq 27: Ator -> viewAssinatura.incluirRefeicaoNoPedido] Refeicao: REF02 | Quantidade: 2
+  [Seq 28: ctrlAssinatura.addRefeicao] Buscando refeicao na colecao e adicionando ao pedido...
+  [Seq 29: :Refeicao(CatalogoRefeicoes).buscarRefeicao] Refeicao localizada: REF02 - Frango Grelhado com Crosta de Gergelim
+  [Seq 31: pe:Pedido.adicionarItem] Adicionando refeicao ao pedido...
+  [Seq 32: <<create>> ip:ItemPedido.criar] Instanciando ItemPedido para 'Frango Grelhado com Crosta de Gergelim' (qtde: 2)
+  [Seq 33: ip:ItemPedido.calcularSubtotalPorcoes] Subtotal calculado: 2 porcao(oes)
+  [Seq 35: :ItemPedido(ColecaoItensPedido).add] Item adicionado a colecao de itens do pedido.
+  [Seq 36: pe:Pedido.validarLimiteRefeicoes] Total no pedido: 4/5 (Saldo restante: 1)
+  [Seq 38: viewAssinatura.atualizarBarraProgresso] TELA: Barra de progresso atualizada! Refeicoes restantes para fechar o plano: 1
 
-[Seq 24: Ator -> viewAssinatura.incluirRefeicaoNoPedido] Refeicao: REF06 | Quantidade: 1
-  [Seq 25: ctrlAssinatura.addRefeicao] Buscando refeicao na colecao e adicionando ao pedido...
-  [Seq 26: :Refeicao(CatalogoRefeicoes).buscarRefeicao] Refeicao localizada: REF06 - Mousse de Cacau 70% com Chia
-  [Seq 28: pe:Pedido.adicionarItem] Adicionando refeicao ao pedido...
-  [Seq 29: <<create>> ip:ItemPedido.criar] Instanciando ItemPedido para 'Mousse de Cacau 70% com Chia' (qtde: 1)
-  [Seq 30: ip:ItemPedido.calcularSubtotalPorcoes] Subtotal calculado: 1 porcao(oes)
-  [Seq 32: :ItemPedido(ColecaoItensPedido).add] Item adicionado a colecao de itens do pedido.
-  [Seq 33: pe:Pedido.validarLimiteRefeicoes] Total no pedido: 5/5 (Saldo restante: 0)
-  [Seq 34: viewAssinatura.atualizarBarraProgresso] TELA: Barra de progresso atualizada! Refeicoes restantes para fechar o plano: 0
+[Seq 27: Ator -> viewAssinatura.incluirRefeicaoNoPedido] Refeicao: REF06 | Quantidade: 1
+  [Seq 28: ctrlAssinatura.addRefeicao] Buscando refeicao na colecao e adicionando ao pedido...
+  [Seq 29: :Refeicao(CatalogoRefeicoes).buscarRefeicao] Refeicao localizada: REF06 - Mousse de Cacau 70% com Chia
+  [Seq 31: pe:Pedido.adicionarItem] Adicionando refeicao ao pedido...
+  [Seq 32: <<create>> ip:ItemPedido.criar] Instanciando ItemPedido para 'Mousse de Cacau 70% com Chia' (qtde: 1)
+  [Seq 33: ip:ItemPedido.calcularSubtotalPorcoes] Subtotal calculado: 1 porcao(oes)
+  [Seq 35: :ItemPedido(ColecaoItensPedido).add] Item adicionado a colecao de itens do pedido.
+  [Seq 36: pe:Pedido.validarLimiteRefeicoes] Total no pedido: 5/5 (Saldo restante: 0)
+  [Seq 38: viewAssinatura.atualizarBarraProgresso] TELA: Barra de progresso atualizada! Refeicoes restantes para fechar o plano: 0
 
-[Seq 35: Ator -> viewAssinatura.registrarLocalEntrega] CEP: 01302-907
-  [Seq 36: ctrlAssinatura.definirEnderecoEntrega] Instanciando e vinculando endereco...
-  [Seq 37: <<create>> en:Endereco.criar] Instanciando endereco de entrega...
-  [Seq 38: en:Endereco.validarCEP] CEP 01302-907 validado = true
-  [Seq 39: as:Assinatura.vincularEndereco] Endereco vinculado: Rua da Consolacao, 930 (Bloco B) - Consolacao, Sao Paulo/SP - CEP: 01302-907
-  [Seq 40: as:Assinatura.calcularValorTotal] Valor total apurado: R$ 149.90
-  [Seq 41: as:Assinatura.atualizarStatus] Status da Assinatura: AGUARDANDO_PAGAMENTO
-  [Seq 41: viewAssinatura.exibirResumoParaPagamento] TELA DE RESUMO:
+[Seq 39: Ator -> viewAssinatura.registrarLocalEntrega] CEP: 01302-907
+  [Seq 40: ctrlAssinatura.definirEnderecoEntrega] Instanciando e vinculando endereco...
+  [Seq 41: <<create>> en:Endereco.criar] Instanciando endereco de entrega...
+  [Seq 42: en:Endereco.validarCEP] CEP 01302-907 validado = true
+  [Seq 44: as:Assinatura.vincularEndereco] Endereco vinculado: Rua da Consolacao, 930 (Bloco B) - Consolacao, Sao Paulo/SP - CEP: 01302-907
+  [Seq 45: as:Assinatura.calcularValorTotal] Valor total apurado: R$ 149.90
+  [Seq 46: as:Assinatura.atualizarStatus] Status da Assinatura: AGUARDANDO_PAGAMENTO
+  [Seq 47: viewAssinatura.exibirResumoParaPagamento] TELA DE RESUMO:
      Plano: Plano Semanal Compacto (5 refeicoes)
      Total de Porcoes no Pedido: 5
      Endereco: Rua da Consolacao, 930 (Bloco B) - Consolacao, Sao Paulo/SP - CEP: 01302-907
      Status da Assinatura: AGUARDANDO_PAGAMENTO
      Valor Total a Pagar: R$ 149.90
 
-[Seq 42: Ator -> viewAssinatura.efetuarPagamentoAssinatura] Titular: GIOVANI O CESTARI | Final Cartao: 8899
-  [Seq 43: ctrlAssinatura.processarPagamento] Processando pagamento da assinatura...
-  [Seq 44: <<create>> cc:CartaoCredito.criar] Instanciando CartaoCredito do titular GIOVANI O CESTARI
-  [Seq 45: cc:CartaoCredito.validarDadosCartao] Dados formais do cartao validados = true
-  [Seq 47: <<create>> pg:Pagamento.criar] Pagamento criado no valor de R$ 149.90 (Status: PENDENTE)
-  [Seq 48: opCartao:OperadoraCartao.autorizarTransacao] Consultando Operadora Visa/Mastercard Gateway para R$ 149.90 -> autorizado = true
-  [Seq 50: pg:Pagamento.confirmarAutorizacao] Status do Pagamento atualizado para: AUTORIZADO
-  [Seq 51: pe:Pedido.aprovarPedido] Status do Pedido atualizado para: APROVADO
-  [Seq 53: as:Assinatura.gerarProtocoloEPrevisaoEntrega] Protocolo MR-2026-4821 | Previsao 1a Entrega: 13/11/2026
-  [Seq 52: as:Assinatura.ativarAssinatura] Assinatura ATIVA! Protocolo: MR-2026-4821
-  [Seq 54: PersistenciaCSV.salvarAssinatura] Dados persistidos com sucesso em 'dados/assinaturas.csv' e 'dados/itens_pedido.csv'!
-  [Seq 55: viewAssinatura.exibirConfirmacaoSucesso] TELA DE SUCESSO:
+[Seq 48: Ator -> viewAssinatura.efetuarPagamentoAssinatura] Titular: GIOVANI O CESTARI | Final Cartao: 8899
+  [Seq 49: ctrlAssinatura.processarPagamento] Processando pagamento da assinatura...
+  [Seq 50: <<create>> cc:CartaoCredito.criar] Instanciando CartaoCredito do titular GIOVANI O CESTARI
+  [Seq 51: cc:CartaoCredito.validarDadosCartao] Dados formais do cartao validados = true
+  [Seq 53: <<create>> pg:Pagamento.criar] Pagamento criado no valor de R$ 149.90 (Status: PENDENTE)
+  [Seq 55: opCartao:OperadoraCartao.autorizarTransacao] Consultando Operadora Visa/Mastercard Gateway para R$ 149.90 -> autorizado = true
+  [Seq 57: pg:Pagamento.confirmarAutorizacao] Status do Pagamento atualizado para: AUTORIZADO
+  [Seq 58: pe:Pedido.aprovarPedido] Status do Pedido atualizado para: APROVADO
+  [Seq 59: as:Assinatura.ativarAssinatura] Status da Assinatura atualizado para: ATIVA
+  [Seq 60: as:Assinatura.gerarProtocoloEPrevisaoEntrega] Protocolo MR-2026-7572 | Previsao 1a Entrega: 17/11/2026
+  [Seq 61: PersistenciaCSV.salvarAssinatura] Dados persistidos com sucesso em 'dados/assinaturas.csv' e 'dados/itens_pedido.csv'!
+  [Seq 62: viewAssinatura.exibirConfirmacaoSucesso] TELA DE SUCESSO:
      ================================================================
      ASSINATURA CONFIRMADA E ATIVA!
-     Protocolo Gerado: MR-2026-4821
-     Previsao da 1a Entrega: 13/11/2026
+     Protocolo Gerado: MR-2026-7572
+     Previsao da 1a Entrega: 17/11/2026
      ================================================================
