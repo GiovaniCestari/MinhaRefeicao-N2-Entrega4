@@ -14,7 +14,7 @@ Implementação prática em **Java** do cenário de caso de uso **"Assinar Plano
 
 ## 🔗 Links da Entrega 4
 * 📖 **Documentação Completa na Wiki do GitHub (Entrega 4):** [Acessar Wiki da Entrega 4](https://github.com/GiovaniCestari/MinhaRefeicao-N2-Entrega4/wiki)
-* 🎥 **Vídeo de Demonstração (UML + Código Java + Execução):** `https://youtu.be/QE0vsf33wI4`
+* 🎥 **Vídeo de Demonstração (UML + Código Java + Execução):** https://youtu.be/QE0vsf33wI4
 * 💻 **Código-Fonte Java:** [`src/minharefeicao/`](src/minharefeicao)
 * 💾 **Arquivos de Persistência CSV:** [`dados/assinaturas.csv`](dados/assinaturas.csv) e [`dados/itens_pedido.csv`](dados/itens_pedido.csv)
 
